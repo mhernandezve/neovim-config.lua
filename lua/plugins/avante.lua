@@ -6,12 +6,17 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "openai",
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
-      max_tokens = 4096,
+    providers = {
+      provider = "openai", -- enable OpenAI provider
+      openai = {
+        endpoint = "https://api.openai.com/v1",
+        model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
+        max_tokens = 4096,
+      },
     },
+  },
+  dual_boost = {
+    first_provider = "openai",
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",

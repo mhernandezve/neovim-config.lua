@@ -6,22 +6,22 @@ return {
   event = 'VeryLazy',
   dependencies = {
     -- LSP Management
-    -- https://github.com/williamboman/mason.nvim
-    { 'williamboman/mason.nvim' },
-    -- https://github.com/williamboman/mason-lspconfig.nvim
-    { 'williamboman/mason-lspconfig.nvim' },
-
+    -- https://github.com/mason-org/mason.nvim
+    { 'mason-org/mason.nvim' },
+    -- https://github.com/mason-org/mason-lspconfig.nvim
+    { 'mason-org/mason-lspconfig.nvim' },
     -- Useful status updates for LSP
     -- https://github.com/j-hui/fidget.nvim
     { 'j-hui/fidget.nvim', opts = {} },
-
     -- Additional lua configuration, makes nvim stuff amazing!
     -- https://github.com/folke/neodev.nvim
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/lazydev.nvim', opts = {} },
+    { 'ray-x/lsp_signature.nvim' },
   },
   config = function ()
     require('mason').setup()
-    require('mason-lspconfig').setup({
+    require('mason-lspconfig').setup {
+      automatic_enable = true,
       -- Install these LSPs automatically
       ensure_installed = {
         -- 'bashls', -- requires npm to be installed
@@ -33,28 +33,14 @@ return {
         'marksman',
         'quick_lint_js',
         'ts_ls',
+        'tflint',
         -- 'tsserver', -- requires npm to be installed
         -- 'yamlls', -- requires npm to be installed
       }
-    })
-
-    local lspconfig = require('lspconfig')
-    local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-    local lsp_attach = function(client, bufnr)
-      -- Create your keybindings here...
-    end
-
-    -- Call setup on each LSP server
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
-        lspconfig[server_name].setup({
-          on_attach = lsp_attach,
-          capabilities = lsp_capabilities,
-        })
-      end
-    })
+    }
 
     -- Lua LSP settings
+    local lspconfig = require('lspconfig')
     lspconfig.lua_ls.setup {
       settings = {
         Lua = {
