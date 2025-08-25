@@ -4,11 +4,13 @@ return {
   lazy = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
+    -- Set OpenAI as the default provider
+    provider = "openai",
     providers = {
-      provider = "openai", -- set the provider to openai
+      provider = "openai", -- Default provider is OpenAI
       openai = {
         endpoint = "https://api.openai.com/v1",
-        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+        model = "gpt-4o", -- Your desired model (e.g., gpt-4o)
         max_tokens = 4096,
       },
     },

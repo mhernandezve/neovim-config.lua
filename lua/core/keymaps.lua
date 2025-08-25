@@ -41,10 +41,8 @@ keymap.set("n", "<leader>qc", ":cclose<CR>", {desc = "Close quickfix list"})
 -- Vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", {desc = "Toggle maximize tab"})
 
--- Nvim-tree
-keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", {desc = "Toggle file explorer"})
-keymap.set("n", "<leader>er", ":NvimTreeFocus<CR>", {desc = "Toggle focus to file explorer"})
-keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", {desc = "Find file in file explorer"})
+-- Oil.nvim
+keymap.set("n", "<leader>e", require('oil').toggle_float, {desc = "Toggle file explorer"})
 
 -- FzfLua
 local fzflua_builtin = require('fzf-lua')
