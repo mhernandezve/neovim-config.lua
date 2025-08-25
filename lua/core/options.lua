@@ -53,14 +53,6 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
 
--- require'lspconfig'.terraformls.setup{}
--- vim.api.nvim_create_autocmd({"BufWritePre"}, {
---   pattern = {"*.tf", "*.tfvars"},
---   callback = function()
---     vim.lsp.buf.format()
---   end,
--- })
-
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
