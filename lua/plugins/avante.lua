@@ -10,7 +10,7 @@ return {
       provider = "openai", -- Default provider is OpenAI
       openai = {
         endpoint = "https://api.openai.com/v1",
-        model = "gpt-4o", -- Your desired model (e.g., gpt-4o)
+        model = "gpt5-mini", -- Your desired model (e.g., gpt5-mini)
         max_tokens = 4096,
       },
     },
@@ -38,13 +38,13 @@ return {
       event = "VeryLazy",
       opts = {
         -- recommended settings
+        instructions_file = "avante.md",
         default = {
           embed_image_as_base64 = false,
           prompt_for_file_name = false,
           drag_and_drop = {
-            insert_mode = true,
+            insert_mode = false,
           },
-          -- required for Windows users
           use_absolute_path = true,
         },
       },

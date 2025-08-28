@@ -49,7 +49,7 @@ opt.iskeyword:append("-")
 opt.mouse = ""
 
 -- Folding
-opt.foldlevel = 20
+opt.foldenable = false
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
 

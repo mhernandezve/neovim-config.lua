@@ -44,6 +44,10 @@ keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", {desc = "Toggle maximize t
 -- Oil.nvim
 keymap.set("n", "<leader>e", require('oil').toggle_float, {desc = "Toggle file explorer"})
 
+-- Minifiles
+local minifiles_builtin = require('mini.files')
+keymap.set("n", "<leader>m", function() minifiles_builtin.open() end, {desc = "Toggle minifiles"})
+
 -- FzfLua
 local fzflua_builtin = require('fzf-lua')
 keymap.set('n', '<leader>ff', function() fzflua_builtin.files({ fzf_opts = {['--layout'] = 'reverse-list'} }) end, {desc = "Find files"})
