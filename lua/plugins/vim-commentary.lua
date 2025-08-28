@@ -1,7 +1,8 @@
 -- Comment/Uncomment Lines of Code
 return {
-    'numToStr/Comment.nvim',
-    opts = {
-        -- add any options here
+    {'numToStr/Comment.nvim',
+        opts = {
+            ignore = '^$', -- ignore empty lines
+        },
     }
 }
