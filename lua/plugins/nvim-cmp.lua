@@ -45,9 +45,9 @@ return {
       mapping = cmp.mapping.preset.insert {
         ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
         ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4), -- scroll backward
-        ['<C-f>'] = cmp.mapping.scroll_docs(4), -- scroll forward
-        ['<C-Space>'] = cmp.mapping.complete {}, -- show completion suggestions
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),    -- scroll backward
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),     -- scroll forward
+        ['<C-Space>'] = cmp.mapping.complete {},    -- show completion suggestions
         ['<CR>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
@@ -74,11 +74,11 @@ return {
         end, { 'i', 's' }),
       },
       sources = cmp.config.sources({
-        { name = "copilot", group_index = 2 }, -- copilot
-        { name = "nvim_lsp", group_index = 2 }, -- lsp 
-        { name = "luasnip", group_index = 2 }, -- snippets
-        { name = "buffer", group_index = 2 }, -- text within current buffer
-        { name = "path", group_index = 2 }, -- file system paths
+        { name = "copilot",  group_index = 2 }, -- copilot
+        { name = "nvim_lsp", group_index = 2 }, -- lsp
+        { name = "luasnip",  group_index = 2 }, -- snippets
+        { name = "buffer",   group_index = 2 }, -- text within current buffer
+        { name = "path",     group_index = 2 }, -- file system paths
       }),
       ---@diagnostic disable-next-line: missing-fields
       formatting = {
@@ -97,4 +97,4 @@ return {
       },
     })
   end,
- }
+}
