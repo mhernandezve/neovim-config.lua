@@ -1,10 +1,6 @@
--- This has to be set before initializing lazy
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+require("config.options")
 require("config.lazy")
 
 -- These modules are not loaded by lazy
-require("core.options")
-require("core.keymaps")
-
+require("config.keymaps")
+require("config.autocmds")
