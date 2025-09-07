@@ -1,6 +1,5 @@
 local keymap = vim.keymap
 
--- vim.keymap.set('n', '<Leader>dog', dog, { desc = "Do something dog like" }
 -- General keymaps
 keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and quit" })
 keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "Quit without saving" })
