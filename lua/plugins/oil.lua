@@ -18,7 +18,6 @@ return {
       view_options = {
         show_hidden = true,
       },
-      preview_split = "auto",
     })
   end,
   lazy = false,
