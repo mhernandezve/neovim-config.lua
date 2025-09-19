@@ -12,13 +12,13 @@ return {
     { 'mason-org/mason-lspconfig.nvim' },
     -- Useful status updates for LSP
     -- https://github.com/j-hui/fidget.nvim
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',             opts = {} },
     -- Additional lua configuration, makes nvim stuff amazing!
     -- https://github.com/folke/neodev.nvim
-    { 'folke/lazydev.nvim', opts = {} },
+    { 'folke/lazydev.nvim',            opts = {} },
     { 'ray-x/lsp_signature.nvim' },
   },
-  config = function ()
+  config = function()
     require('mason').setup()
     require('mason-lspconfig').setup {
       automatic_enable = true,
@@ -40,17 +40,16 @@ return {
     }
 
     -- Lua LSP settings
-    local lspconfig = require('lspconfig')
-    lspconfig.lua_ls.setup {
+    vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
           diagnostics = {
             -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
+            globals = { 'vim' },
           },
         },
       },
-    }
+    })
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview
@@ -59,7 +58,5 @@ return {
       opts.border = opts.border or "rounded" -- Set border to rounded
       return open_floating_preview(contents, syntax, opts, ...)
     end
-
   end
 }
-
