@@ -50,8 +50,14 @@ return {
           ["alt-h"]  = fzf_lua.actions.toggle_hidden,
           ["alt-f"]  = fzf_lua.actions.toggle_follow,
         },
-      }
-
+      },
+      files = {
+        cmd = "rg --files --hidden --follow --glob '!.git/*' --glob '!node_modules/*' --glob '!.cache/*'",
+        git_icons = true,
+        file_icons = true,
+        color_icons = true,
+        previewer = "bat",
+      },
     })
   end,
 }
