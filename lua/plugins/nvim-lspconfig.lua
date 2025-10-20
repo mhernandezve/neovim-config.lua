@@ -34,6 +34,7 @@ return {
         'quick_lint_js',
         'ts_ls',
         'tflint',
+        'tailwindcss',
         -- 'tsserver', -- requires npm to be installed
         -- 'yamlls', -- requires npm to be installed
       }

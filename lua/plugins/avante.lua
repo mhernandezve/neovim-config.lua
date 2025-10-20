@@ -5,43 +5,41 @@ return {
   version = false,
   opts = {
     -- Set OpenAI as the default provider
-    provider = "geai",
+    provider = "copilot",
     providers = {
-      provider = "openai", -- Default provider is OpenAI
+      -- Default provider is OpenAI
       openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt5-mini",
-        max_tokens = 8192,
+        max_tokens = 120000,
       },
       ---@type AvanteProvider
       ["geai"] = {
         __inherited_from = 'openai',
-        endpoint = "GEAI_ENDPOINT",
-        model = "saia:assistant:test",
-        max_tokens = 4096,
+        endpoint = vim.env.GEAI_ENDPOINT,
+        model = "saia:agent:test",
+        max_tokens = 120000,
         api_key_name = "GEAI_API_KEY",
       },
     },
   },
   build = "make",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "echasnovski/mini.pick",       -- for file_selector provider mini.pick
-    "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua",            -- for file_selector provider fzf
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua",      -- for providers='copilot'
+    "echasnovski/mini.pick",  -- for file_selector provider mini.pick
+    "hrsh7th/nvim-cmp",       -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua",       -- for file_selector provider fzf
+    "stevearc/dressing.nvim",
+    "echasnovski/mini.icons", -- or echasnovski/mini.icons
+    -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
       event = "VeryLazy",
       opts = {
-        -- recommended settings
-        instructions_file = "avante.md",
         default = {
           embed_image_as_base64 = false,
           prompt_for_file_name = false,

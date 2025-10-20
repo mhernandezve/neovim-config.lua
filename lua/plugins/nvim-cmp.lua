@@ -31,6 +31,7 @@ return {
     local luasnip = require('luasnip')
     local lspkind = require('lspkind')
     require('luasnip.loaders.from_vscode').lazy_load()
+    require("luasnip").filetype_extend("astro", { "typescript", "html" })
     luasnip.config.setup({})
 
     cmp.setup({

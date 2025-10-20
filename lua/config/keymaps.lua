@@ -5,6 +5,11 @@ keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and quit" })
 keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "Quit without saving" })
 keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Save" })
 keymap.set("n", "gx", ":!open <c-r><c-a><CR>", { desc = "Open URL under cursor" })
+keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<C-k>", ":move .-2<CR>==<CR>", { remap = true, silent = true, desc = "Move line up" })
+keymap.set("n", "<C-j>", ":move .+1<CR>==<CR>", { remap = true, silent = true, desc = "Move line down" })
+keymap.set("v", "<C-k>", ":move .-2<CR>gv=gv", { remap = true, silent = true, desc = "Move selection up" })
+keymap.set("v", "<C-j>", ":move .+1<CR>gv=gv", { remap = true, silent = true, desc = "Move selection down" })
 
 -- Split window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })

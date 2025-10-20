@@ -14,7 +14,7 @@ return {
           default = "bat",
           layout = "horizontal",
           horizontal = "right:60%",
-          border = "sharp",
+          border = "rounded",
         },
       },
       fzf_opts = {
