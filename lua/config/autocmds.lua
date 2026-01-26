@@ -83,3 +83,38 @@ vim.api.nvim_create_autocmd("User", {
     end
   end),
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup("TerraformFmt"),
+  pattern = { "*.tf", "*.tfvars" },
+  callback = function(args)
+    local buf = args.buf
+
+    -- guarda vista (cursor/scroll) para que no “salte”
+    local view = vim.fn.winsaveview()
+
+    -- contenido actual del buffer
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+    -- temp file con extensión correcta (ayuda a terraform fmt)
+    local tmp = vim.fn.tempname() .. ".tf"
+    vim.fn.writefile(lines, tmp)
+
+    -- fmt sobre el temporal
+    local out = vim.fn.system({ "terraform", "fmt", tmp })
+    if vim.v.shell_error ~= 0 then
+      vim.notify("terraform fmt failed:\n" .. out, vim.log.levels.ERROR)
+      pcall(vim.fn.delete, tmp)
+      return
+    end
+
+    -- leer resultado y reemplazar buffer
+    local formatted = vim.fn.readfile(tmp)
+    pcall(vim.fn.delete, tmp)
+
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, formatted)
+
+    -- restaurar vista
+    vim.fn.winrestview(view)
+  end,
+})

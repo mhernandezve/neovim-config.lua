@@ -43,27 +43,36 @@ return {
       completion = {
         completeopt = 'menu,menuone,noinsert',
       },
-      mapping = cmp.mapping.preset.insert {
+
+      -- Copilot mood without Copilot
+      preselect = cmp.PreselectMode.Item,
+      experimental = {
+        ghost_text = true,
+      },
+
+      mapping = cmp.mapping.preset.insert({
         ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
         ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),    -- scroll backward
         ['<C-f>'] = cmp.mapping.scroll_docs(4),     -- scroll forward
-        ['<C-Space>'] = cmp.mapping.complete {},    -- show completion suggestions
-        ['<CR>'] = cmp.mapping.confirm {
+        ['<C-Space>'] = cmp.mapping.complete(),     -- show completion suggestions
+
+        ['<CR>'] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
-        },
-        -- Tab through suggestions or when a snippet is active, tab to the next argument
+        }),
+
+        -- TAB: si hay menú, navega; si hay snippet, expande/salta; si no, TAB normal
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.close()
+            cmp.select_next_item()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           else
             fallback()
           end
         end, { 'i', 's' }),
-        -- Tab backwards through suggestions or when a snippet is active, tab to the next argument
+
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -73,26 +82,27 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
-      },
-      sources = cmp.config.sources({
-        { name = "copilot",  group_index = 2 }, -- copilot
-        { name = "nvim_lsp", group_index = 2 }, -- lsp
-        { name = "luasnip",  group_index = 2 }, -- snippets
-        { name = "buffer",   group_index = 2 }, -- text within current buffer
-        { name = "path",     group_index = 2 }, -- file system paths
       }),
-      ---@diagnostic disable-next-line: missing-fields
+
+      -- Order: LSP/snippets first, then path, then buffer
+      sources = cmp.config.sources({
+        -- { name = "copilot" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "path" },
+        { name = "buffer" },
+      }),
+
       formatting = {
         expandable_indicator = false,
-        fields = cmp.expandable_indicator,
         format = lspkind.cmp_format({
+          -- symbol_map = { Copilot = "" },
           mode = "symbol_text",
           max_width = 50,
-          symbol_map = { Copilot = "" }
-        })
+        }),
       },
+
       window = {
-        -- Add borders to completions popups
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
