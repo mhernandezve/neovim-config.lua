@@ -59,20 +59,20 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Auto format
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = augroup('LspFormatting'),
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    if client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format({ async = false, id = client.id })
-        end,
-      })
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   group = augroup('LspFormatting'),
+--   callback = function(args)
+--     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+--     if client.server_capabilities.documentFormattingProvider then
+--       vim.api.nvim_create_autocmd('BufWritePre', {
+--         buffer = args.buf,
+--         callback = function()
+--           vim.lsp.buf.format({ async = false, id = client.id })
+--         end,
+--       })
+--     end
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "OilEnter",
